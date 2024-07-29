@@ -210,29 +210,10 @@ add_action( 'wp_enqueue_scripts', 'my_pre_theme_assets', 0 );
  *
  * @return void
  */
-/*
+
+/// LOAD AUTO EXPORT JSON
+// be sure to set active to true
 function wpe_register_acf_fields() {
-	$path                      = __DIR__ . '/acf-json/acf-fields.json';
-	$fields_json               = json_decode( file_get_contents( $path ), true ); // phpcs:ignore
-	$fields_json['location']   = array(
-		array(
-			array(
-				'param'    => 'block',
-				'operator' => '==',
-				'value'    => 'wpe/slide', // Assign to desired block.
-			),
-		),
-	);
-	$fields_json['local']      = 'json';
-	$fields_json['local_file'] = $path;
-
-	acf_add_local_field_group( $fields_json );
-}
-add_action( 'acf/include_fields', 'wpe_register_acf_fields' );
-*/
-
-
-function wpe_register_acf_fields_slider() {
 
 	$dir = new DirectoryIterator( __DIR__ . '/acf-json/' );
 	foreach( $dir as $file )
@@ -241,9 +222,55 @@ function wpe_register_acf_fields_slider() {
 		if ( !$file->isDot() && 'json' == $file->getExtension() )
 		{
 			$fields_json = json_decode( file_get_contents( $file->getPathname() ), true );
-			acf_add_local_field_group( $fields_json[0] );
+			$fields_json['active'] = true;
+			acf_add_local_field_group( $fields_json );
 		}
 	}
 }
-add_action( 'acf/include_fields', 'wpe_register_acf_fields_slider' );
+add_action( 'acf/include_fields', 'wpe_register_acf_fields' );
 
+
+
+//LOAD MANUALLY EXPORTED JSON
+/*
+add_action( 'acf/include_fields', 'wpe_register_acf_fields_slider' );
+function wpe_register_acf_fields_slider() {
+
+	$dir = new DirectoryIterator( __DIR__ . '/acf-fields-export/' );
+	foreach( $dir as $file )
+	{
+		// var_dump( $file );
+		if ( !$file->isDot() && 'json' == $file->getExtension() )
+		{
+			$fields_json = json_decode( file_get_contents( $file->getPathname() ), true );
+			$fields_json['active'] = true;
+			//DISABLED
+			//acf_add_local_field_group( $fields_json[0] );
+		}
+	}
+}
+*/
+
+add_filter('acf/settings/save_json', 'my_acf_json_save_point');
+function my_acf_json_save_point( $path ) {
+    // Update path
+    $path = __DIR__ . '/acf-json';
+    // Return path
+    return $path;
+}
+
+
+/**
+ * Register the path to load the ACF json files so that they are version controlled.
+ * @param $paths The default relative path to the folder where ACF saves the files.
+ * @return string The new relative path to the folder where we are saving the files.
+ */
+add_filter('acf/settings/load_json', 'my_acf_json_load_point');
+function my_acf_json_load_point( $paths ) {
+  	// Remove original path
+  	unset( $paths[0] ); // Append our new path
+  	$paths[] = __DIR__ . '/acf-json'; 
+	return $paths;
+}
+
+?>
