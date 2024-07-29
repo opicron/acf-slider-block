@@ -1,4 +1,19 @@
 <?php
+
+/**
+ * Plugin Name:       ACF Slider Block
+ * Description:       A slider carousel block.
+ * Version:           0.1.2
+ * Author:            ACF
+ * License:           GPL-2.0-or-later
+ * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+ * Update URI:        null
+ * Text Domain:       wpe
+ *
+ * @package           slider-acf
+ */
+
+
 /**
  * Fix ACF post ID when previewing draft posts.
  *
@@ -41,18 +56,6 @@ function fix_acf_post_id_on_preview( $null, $post_id ) {
 add_filter( 'acf/pre_load_post_id', 'fix_acf_post_id_on_preview', 10, 2 );
 */
 
-/**
- * Plugin Name:       ACF Slider Block
- * Description:       A slider carousel block.
- * Version:           0.1.2
- * Author:            ACF
- * License:           GPL-2.0-or-later
- * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Update URI:        null
- * Text Domain:       wpe
- *
- * @package           slider-acf
- */
 
 /**
  * Register blocks
@@ -159,18 +162,19 @@ function my_pre_theme_assets() {
 	.swiper-slide:not(.swiper-slide-active) {
 	}
 
-
 	.swiper-wrapper {
-		display: flex;
+		/*display: flex;*/
 	}
 
-.wp-block-wpe-slider .swiper-thumbs {
-    flex-wrap: wrap;
-    column-gap: 10px;
-    row-gap: 10px;
-	width:100%;
-	justify-content:center;
-}
+/*
+	.wp-block-wpe-slider .swiper-thumbs {
+		flex-wrap: wrap;
+		column-gap: 10px;
+		row-gap: 10px;
+		width:100%;
+		justify-content:center;
+	}
+*/
 
 	.wp-block-wpe-slider .swiper-thumbs .swiper-wrapper {
 		height: 80px; /*causes slight under/over size*/
@@ -183,7 +187,7 @@ function my_pre_theme_assets() {
 
 	.wp-block-wpe-slider .swiper-main .swiper-slide img {
 		object-fit: cover; /*avoid squeezed imaged on initial load*/
-		aspect-ratio: 1/1;
+		aspect-ratio: 1/1; /*avoid resize on wpblock container */
 	}
 
 	.wp-block-wpe-slider .swiper-main .swiper-slide:not(:first-child) {
@@ -206,6 +210,7 @@ add_action( 'wp_enqueue_scripts', 'my_pre_theme_assets', 0 );
  *
  * @return void
  */
+/*
 function wpe_register_acf_fields() {
 	$path                      = __DIR__ . '/acf-json/acf-fields.json';
 	$fields_json               = json_decode( file_get_contents( $path ), true ); // phpcs:ignore
@@ -224,3 +229,21 @@ function wpe_register_acf_fields() {
 	acf_add_local_field_group( $fields_json );
 }
 add_action( 'acf/include_fields', 'wpe_register_acf_fields' );
+*/
+
+
+function wpe_register_acf_fields_slider() {
+
+	$dir = new DirectoryIterator( __DIR__ . '/acf-json/' );
+	foreach( $dir as $file )
+	{
+		// var_dump( $file );
+		if ( !$file->isDot() && 'json' == $file->getExtension() )
+		{
+			$fields_json = json_decode( file_get_contents( $file->getPathname() ), true );
+			acf_add_local_field_group( $fields_json[0] );
+		}
+	}
+}
+add_action( 'acf/include_fields', 'wpe_register_acf_fields_slider' );
+
