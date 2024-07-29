@@ -158,7 +158,6 @@ function my_pre_theme_assets() {
     wp_enqueue_style( 'dummy-handle' );
     wp_add_inline_style( 'dummy-handle', '
 	?>
-	<style>
 	.swiper-slide:not(.swiper-slide-active) {
 	}
 
@@ -198,8 +197,6 @@ function my_pre_theme_assets() {
 
 	.wp-block-wpe-slider .swiper-main .swiper-slide {
 	}
-
-	</style>
 	<?php
 	' );
 }
