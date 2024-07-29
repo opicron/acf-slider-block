@@ -10,6 +10,7 @@
         "mode": "preview",
         "renderTemplate": "template.php"
     },
+    "usesContext": ["acf/fields"],
     "attributes": {
         "slideImg": {
             "type": "object",
@@ -20,7 +21,11 @@
         "slideTitle": {
             "type": "string",
             "default": "Slide Title"
-        }
+        },
+	"slideObjectPosition": {
+            "type": "string",
+            "default": "center center"
+	}
     },
     "parent": [ "wpe/slider" ],
     "supports": {

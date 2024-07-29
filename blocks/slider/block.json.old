@@ -64,7 +64,8 @@
     },
     "editorScript": ["swiper-module-editor"],
     "editorStyle": "file:./editor.css",
-    "style": ["swiperjs-css-style", "swiperjs-css"],
+    //"style": ["file:./../../swiper/swiper-bundle.css", "file:./style.css", "swiperjs-css"],
+    "style": ["file:./style.css", "swiperjs-css"],
     "viewScript": ["swiper-module-front"],
     "styles": [
         {

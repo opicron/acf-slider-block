@@ -46,6 +46,26 @@
 			"placeholder": "",
 			"prepend": "",
 			"append": ""
+		},
+		{
+			"key": "field_653cd2938dh3",
+			"label": "Object Position",
+			"name": "object_position",
+			"aria-label": "",
+			"type": "text",
+			"instructions": "",
+			"required": 0,
+			"conditional_logic": 0,
+			"wrapper": {
+				"width": "",
+				"class": "",
+				"id": ""
+			},
+			"default_value": "",
+			"maxlength": "",
+			"placeholder": "center center",
+			"prepend": "",
+			"append": ""
 		}
 	]
 }

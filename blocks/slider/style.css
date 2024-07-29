@@ -1,3 +1,48 @@
+
+.wp-block-wpe-slider .swiper-wrapper .swiper-slide:first-child {
+}
+
+.wp-block-wpe-slider .swiper-wrapper-thumb img {
+	/*border: 1px solid red;*/
+}
+
+.wp-block-wpe-slider .swiper-wrapper-thumb {
+/*	
+	padding-top: 10px;
+	flex-wrap: wrap;
+	column-gap: 10px;
+	row-gap: 10px;
+*/
+}
+
+.wp-block-wpe-slider .swiper-slide img {
+	object-fit: cover;
+-moz-user-select: none;
+   -webkit-user-drag: none;
+   -webkit-user-select: none;
+   -ms-user-select: none;
+}
+
+.wp-block-wpe-slider .swiper-wrapper-thumb .swiper-slide {
+	/*margin-right: 0 !important;*/
+	opacity: .2;
+	width:0px; /*avoid pageshift*/
+	height: 80px;
+}
+
+.wp-block-wpe-slider .swiper-thumbs {
+	overflow: hidden; /* hide additional thumbnails */
+}
+
+.wp-block-wpe-slider .swiper-thumbs .swiper-slide img {
+	height: 80px;
+}
+
+.wp-block-wpe-slider .swiper-wrapper-thumb .swiper-slide.swiper-slide-thumb-active {
+	opacity: 1;
+}
+
+
 .wp-block-wpe-slider .swiper {
 	--swiper-theme-color: var(--wp--preset--color--accent-3, var(--wp--preset--color--primary));
 
@@ -15,7 +60,7 @@
 }
 
 .wp-block-wpe-slider .swiper-wrapper {
-	height: 700px;
+	/*height: 700px;*/
 }
 
 .wp-block-wpe-slide:where(.has-background)::before {

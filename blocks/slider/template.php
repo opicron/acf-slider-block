@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Slider block.
  *
@@ -28,7 +29,12 @@ $allowed_blocks = array(
 	'wpe/slide',
 );
 
+$thumbnail = get_field('thumbnail');
+$arrows = get_field('arrows');
+
 // Our InnerBlocks template to populate when new block is inserted.
+// we can define swiper configuration options here and use them in view.js
+// for example slidesPerPage: 3
 $inner_blocks_template = array(
 	array(
 		'wpe/slide',
@@ -37,7 +43,7 @@ $inner_blocks_template = array(
 				'src' => '../slider/assets/image1.jpg',
 			),
 			'slideTitle' => 'Slide Title #1',
-			'className'  => 'swiper-slide',
+			//'className'  => 'swiper-slide',
 		),
 		array(),
 	),
@@ -48,7 +54,7 @@ $inner_blocks_template = array(
 				'src' => '../slider/assets/image2.jpg',
 			),
 			'slideTitle' => 'Slide Title #2',
-			'className'  => 'swiper-slide',
+			//'className'  => 'swiper-slide',
 		),
 		array(),
 	),
@@ -59,11 +65,12 @@ $inner_blocks_template = array(
 				'src' => '../slider/assets/image3.jpg',
 			),
 			'slideTitle' => 'Slide Title #3',
-			'className'  => 'swiper-slide',
+			//'className'  => 'swiper-slide',
 		),
 		array(),
 	),
 );
+
 
 ?>
 
@@ -82,9 +89,10 @@ $inner_blocks_template = array(
 	>
 <?php endif; ?>
 
-	<div class="swiper">
+<div class="swiper-gallery" id="<?php echo $block_id; ?>">
+	<div class="swiper swiper-main">
 
-		<InnerBlocks 
+		<InnerBlocks
 			allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"
 			class="swiper-wrapper wp-block-wpe-slider__innerblocks"
 			orientation="horizontal"
@@ -95,11 +103,103 @@ $inner_blocks_template = array(
 			<div class="swiper-pagination"></div>
 		<?php endif; ?>
 
-		<div class="swiper-button-prev"></div>
-		<div class="swiper-button-next"></div>
+		<?php if ( $arrows ) : ?>
+
+			<div class="swiper-button-prev .<?php echo $block_id; ?>"></div>
+			<div class="swiper-button-next .<?php echo $block_id; ?>"></div>
+
+		<?php endif; ?>
 
 	</div><!-- .swiper -->
+
+	<?php if ( ! $is_preview ) : ?>
+
+
+		<?php
+		/*
+		<div class="swiper-container swiper-thumbs">
+
+			<InnerBlocks
+				allowedBlocks="<?php echo esc_attr( wp_json_encode( $allowed_blocks ) ); ?>"
+				className="swiper-thumb-wrapper wp-block-wpe-slider-thumb__innerblocks"
+				orientation="horizontal"
+				template="<?php echo esc_attr( wp_json_encode( $inner_blocks_template ) ); ?>"
+			/>
+
+		</div>
+		*/
+
+		//$thumb_justify = get_field('thumb_justify') ? get_field('thumb_justify') : 'center';
+		//$styles = array( 'justify-content: ' . $thumb_justify );
+		//$style  = implode( '; ', $styles );
+
+		?>
+
+		<div class="swiper-thumbs">
+
+			<?php if ( $thumbnail == true ) : ?>
+
+			<div style="<?php echo esc_attr($style); ?>" class="swiper-wrapper wp-block-wpe-slider__innerblocks swiper-wrapper-thumb">
+
+			<?php
+
+//				echo $content;
+
+				// Load the HTML into a DOMDocument
+				$doc = new DOMDocument();
+				libxml_use_internal_errors(true); // Suppress warnings for malformed HTML
+				$doc->loadHTML($content);
+				libxml_clear_errors();
+/*
+				// Find all div elements
+				$divs = $doc->getElementsByTagName('div');
+
+				foreach ($divs as $div) {
+				    // Collect all child nodes
+				    $children = [];
+				    foreach ($div->childNodes as $child) {
+				        $children[] = $child;
+				    }
+
+				    // Remove all child nodes that are not <img>
+				    foreach ($children as $child) {
+				        if ($child->nodeName !== 'img') {
+				            $div->removeChild($child);
+				        }
+				    }
+				}
+*/
+				// Save the modified HTML back to a string
+				$content = $doc->saveHTML();
+
+				$height = get_field('height');
+				$styles = array( 'height: ' . $height );
+				$style  = implode( '; ', $styles );
+				$content = str_replace( $style, '', $content); //remove main slider height
+
+				/*
+				$height = get_field('height');
+				$styles = array( 'height: ' . $height );
+				$style  = implode( '; ', $styles );
+				$content = str_replace( '<div class="swiper-slide', '<div style="heigth:80px;" class="swiper-slide', $content);
+				*/
+
+				// Output the modified HTML
+				echo $content;
+
+			?>
+
+		</div>
+
+			<?php endif; ?>
+	</div>
+
+	<?php endif; ?>
+
+</div>
 
 <?php if ( ! $is_preview ) : ?>
 	</div>
 <?php endif; ?>
+
+
