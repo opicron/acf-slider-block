@@ -5,13 +5,14 @@
  */
 export const swiperConfig = {
 	//autoplay: false, // Automatically slide.
-	//slidesPerView: 1,
+	slidesPerView: 1,
+	//spaceBetween: 10,
 	//loopedSlides: 4,
 	//centeredSlides: true, // Center our slide.
 	uniqueNavElements: true,
 	direction: 'horizontal', // Horizontal slider.
-	effect: 'fade', // slide, fade and more.
-	grabCursor: true, // Show grab cursor for UI/UX.
+	effect: 'fade', // slide, fade and more. EFFECT FADE WILL ONLY ALLOW 1 SLIDEPERVIEW
+	//grabCursor: false, // Show grab cursor for UI/UX.
 	keyboard: true, // Enable keyboard navigation.
 	loop: true, // Enable continuous loop mode.
 	//init: false,
@@ -24,8 +25,39 @@ export const swiperConfig = {
 */
 
 	on: {
-//		init() {
-
+	        afterInit: function (swiper) {
+			//console.log(swiper);
+			//const $lgSwiper = document.getElementById(swiper);
+			if( !window.acf ) {
+			const $lgSwiper = swiper.hostEl;
+			lightGallery($lgSwiper, {
+				//showZoomInOutIcons: true,
+				speed: 300,
+				download: false,
+				//easing: 'lg-fade',
+				actualSize: false,
+				controls: true,
+				mode: 'lg-fade',
+				loop: true,
+				zoomFromOrigin: false,
+				swipeToClose: true,
+				startAnimationDuration: 0,
+				startClass:'',
+				slideEndAnimation: false,
+				mobileSettings: {
+					controls: false,
+					showCloseIcon: true,
+				},
+				backdropDuration: 0,
+				selector: '[lightbox-toggle] > img',
+			});
+			}
+			// Before closing lightGallery, make sure swiper slide
+			// is aligned with the lightGallery active slide
+			//$lgSwiper.addEventListener('lgBeforeClose', () => {
+			//	swiper.slideTo(lg.index, 0)
+		    	//});
+		},
 		beforeInit: function (swiper) {
 
         		//setTimeout(() => {
@@ -46,19 +78,16 @@ export const swiperConfig = {
 			{
 				swiper.thumbs.swiper.slideTo(swiper.realIndex);
 			}
-		    },
+		    }
 //	  	afterInit: function(swiper) {
-//		    //console.log('afterInit', swiper)
-//			swiper.slideTo(0);
-//			//swiper.update();
-//		  },
+//		},
 
 	},
 
 	pagination: {
 		el: '.swiper-pagination',
 		type: 'fraction'
-	},
+	}
 
 	//slidesPerView: 4,
 	//speed: 300,

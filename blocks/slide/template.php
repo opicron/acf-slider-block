@@ -26,10 +26,11 @@ $style  = implode( '; ', $styles );
 
 
 if ( $slide_img['ID'] ) {
-	$slide_img = wp_get_attachment_image( $slide_img['ID'], 'full', '', array( 'style' => esc_attr( $style ), 'class' => 'wp-block-wpe-slide__img' ) );
+	$slide_src = wp_get_attachment_url( $slide_img['ID'] );
+	$slide_img = wp_get_attachment_image( $slide_img['ID'], 'full', '', array( 'data-src' => $slide_src, 'style' => esc_attr( $style ), 'class' => 'wp-block-wpe-slide__img' ) );
 	//$slide_img = wp_get_attachment_image( $slide_img['ID'], 'full', '', array( 'style' => 'object-position:'.$position.';', 'class' => 'wp-block-wpe-slide__img' ) );
 } else {
-	$slide_img = '<img style="'.esc_attr($style).'" src="' . plugins_url( $block['slideImg']['src'], __FILE__ ) . '" height="1080" width="1920" class="wp-block-wpe-slide__img">';
+	$slide_img = '<img data-src="'.plugins_url( $block['slideImg']['src'], __FILE__ ).'" style="'.esc_attr($style).'" src="' . plugins_url( $block['slideImg']['src'], __FILE__ ) . '" height="1080" width="1920" class="wp-block-wpe-slide__img">';
 	//$slide_img = '<img style="object-position:'.$position.';" src="' . plugins_url( $block['slideImg']['src'], __FILE__ ) . '" height="1080" width="1920" class="wp-block-wpe-slide__img">';
 }
 
@@ -55,7 +56,7 @@ if ( $is_preview && empty($title) )
 
 <?php if ( ! $is_preview ) : ?>
 
-	<div
+	<div	lightbox-toggle
 		<?php
 		echo wp_kses_data(
 			get_block_wrapper_attributes(
@@ -70,12 +71,13 @@ if ( $is_preview && empty($title) )
 
 <?php endif; ?>
 
+	<?php /*<a href="$slide_src;";*/ ?>
 	<?php echo wp_kses_post( $slide_img ); ?>
 
 	<?php if ( $title ) : ?>
 		<p class="wp-block-wpe-slide__copy"><?php echo esc_html( $slide_title ); ?></p>
 	<?php endif; ?>
-
+	<?php /*</a>*/ ?>
 
 <?php if ( ! $is_preview ) : ?>
 	</div>

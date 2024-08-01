@@ -177,6 +177,8 @@ $inner_blocks_template = array(
 				$style  = implode( '; ', $styles );
 				$content = str_replace( $style, '', $content); //remove main slider height
 
+				$content = str_replace( 'lightbox-toggle', '', $content); //remove lightbox
+
 				/*
 				$height = get_field('height');
 				$styles = array( 'height: ' . $height );

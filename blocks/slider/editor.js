@@ -3,7 +3,8 @@
  */
 
 // Import Swiper dependency as module.
-import { Swiper } from '../../swiper/swiper-bundle.mjs';
+//import { Swiper } from '../../swiper/swiper-bundle.mjs';
+import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs';
 
 // Import internal Swiper config object.
 import { swiperConfig } from './swiper-config-default.js';
@@ -16,7 +17,7 @@ if ( window.acf ) {
 
 // Initialize Swiper with special configuration for editor.
 function acfRenderSliderBlock( block ) {
-	let swiperEl = block[0].querySelector( '.swiper' );
+	let swiperEl = block[0].querySelector( '.swiper-main' );
 
 	if ( ! swiperEl ) {
 		return;

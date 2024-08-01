@@ -64,7 +64,7 @@
     },
     "editorScript": ["swiper-module-editor"],
     "editorStyle": "file:./editor.css",
-    "style": ["swiperjs-css-style", "swiperjs-css"],
+    "style": ["swiperjs-css-style", "swiperjs-css", "lightgallery-css", "lightgallery-bundle"],
     "viewScript": ["swiper-module-front"],
     "styles": [
         {

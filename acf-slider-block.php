@@ -98,6 +98,12 @@ function wpe_slider_register_scripts() {
 	wp_register_style('swiperjs-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', array(), '11.1.8' );
 	wp_register_style('swiperjs-css-style', plugin_dir_url( __FILE__ ) . 'blocks/slider/style.css', array(), '1.0' );
 
+	//wp_register_style('lightgallery-css', 'https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lightgallery.min.css', array(), 1.0 );
+	//wp_register_style('lightgallery-bundle', 'https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/css/lightgallery-bundle.min.css', array(), 1.0 );
+	wp_register_style('lightgallery-css', 'https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lightgallery.min.css', array(), '2.7.2' );
+	wp_register_style('lightgallery-bundle', 'https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lightgallery-bundle.min.css', array(), '2.7.2' );
+	//wp_register_style('lightgallery-bundle', 'https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/css/lg-tranitions.css', array(), '1.0' );
+
 	/**
 	 * We register our block's with WordPress's handy
 	 * register_block_type();

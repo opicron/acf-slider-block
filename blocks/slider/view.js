@@ -6,7 +6,20 @@
 //import { Swiper } from '../../swiper/swiper-bundle.mjs';
 //import Thumbs from '../../swiper/modules/thumbs.mjs';
 
-import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs'
+import Swiper from 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.mjs';
+
+//old lightgallery
+//import 'https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/js/lightgallery.js';
+
+
+//import lightGallery from 'https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/lightgallery.es5.min.js';
+//import lightgallery from 'https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/+esm'
+//import lightGallery from "https://cdn.skypack.dev/lightgallery@2.0.0-beta.3";
+import "https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/lightgallery.min.js";
+
+//import lgZoom from "https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.1/plugins/zoom/lg-zoom.es5.min.js";
+//import lightGallery from 'https://cdn.skypack.dev/lightgallery@2.0.0-beta.3';
+//let $lgSwiper = document.getElementById("lg-swipper");
 
 // Import internal Swiper config object.
 import { swiperConfig } from './swiper-config-default.js';
@@ -14,7 +27,6 @@ import { swiperConfig } from './swiper-config-default.js';
 document.addEventListener( 'DOMContentLoaded', () => {
 
 	const containers = document.querySelectorAll( '.swiper-main' );
-
 
 	// Select all thumbnail Swiper containers.
     	const thumbContainers = document.querySelectorAll('.swiper-thumbs');
@@ -30,16 +42,17 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
 	    	const thumbElement = thumbContainers[index];
 
-		console.log(thumbElement);
-	        console.log(thumbElement.childNodes.length);
+		//console.log(thumbElement);
+	        //console.log(thumbElement.childNodes.length);
 
 
 	        if (thumbElement.childNodes.length > 1) {
-			console.log('test '+index);
+			//console.log('test '+index);
 
 			//console.log(element.id);
 			//const newThumbElement = document.querySelectorAll(element.id+' .swiper-thumbs');
 			//console.log(newThumbElement);
+
 
 	            const thumbSwiper = new Swiper(thumbElement, {
 			//Threshold: 5,
@@ -107,6 +120,9 @@ document.addEventListener( 'DOMContentLoaded', () => {
 			var swiper = new Swiper( element, swiperConfig );
 
 		}
+
+		//let $lgSwiper = document.getElementById('lg-swipper');
+
 		/*
 		swiper.on('afterInit', function () {
 		    swiper.slideTo(1, 1, false)
@@ -120,4 +136,19 @@ document.addEventListener( 'DOMContentLoaded', () => {
 
 
 	} );
+
+//			let $lgSwiper = document.getElementById("wpe-block-id-1");
+
+/*
+	const $lgContainer = document.getElementById("wpe-block-id-1");
+
+	const lg = lightGallery($lgContainer, {
+	  speed: 500,
+	  showZoomInOutIcons: true,
+	  actualSize: false,
+		controls: true,
+		selector: '.swiper-slide > img',
+	  //plugins: [lgZoom]
+	});
+*/
 } );
