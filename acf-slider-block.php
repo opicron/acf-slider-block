@@ -58,15 +58,6 @@ add_filter( 'acf/pre_load_post_id', 'fix_acf_post_id_on_preview', 10, 2 );
 
 
 /**
- * Register blocks
- *
- * @return void
- */
-function wpe_slider_register_blocks() {
-}
-add_action( 'init', 'wpe_slider_register_blocks', 5 );
-
-/**
  * Check for JavaScript modules and set
  * type="module" based on the registered handle.
  *
@@ -82,6 +73,27 @@ function wpe_script_attrs( $tag, $handle ) {
 	return $tag;
 }
 add_filter( 'script_loader_tag', 'wpe_script_attrs', 10, 2 );
+
+/**
+ * Register blocks
+ *
+ * @return void
+ */
+function wpe_slider_register_blocks() {
+	/**
+	 * We register our block's with WordPress's handy
+	 * register_block_type();
+	 *
+	 * @link https://developer.wordpress.org/reference/functions/register_block_type/
+	 */
+	//this doesnt work
+	//register_block_type( __DIR__ . '/blocks/slider/' , array( 'style' => 'swiperjs-css', 'swiperjs-css-style', ) );
+	register_block_type( __DIR__ . '/blocks/slider/' );
+	register_block_type( __DIR__ . '/blocks/slide/' );
+
+}
+add_action( 'init', 'wpe_slider_register_blocks', 5 );
+
 
 /**
  * Register Swiper scripts.
@@ -103,17 +115,6 @@ function wpe_slider_register_scripts() {
 	wp_register_style('lightgallery-css', 'https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lightgallery.min.css', array(), '2.7.2' );
 	wp_register_style('lightgallery-bundle', 'https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lightgallery-bundle.min.css', array(), '2.7.2' );
 	//wp_register_style('lightgallery-bundle', 'https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/css/lg-tranitions.css', array(), '1.0' );
-
-	/**
-	 * We register our block's with WordPress's handy
-	 * register_block_type();
-	 *
-	 * @link https://developer.wordpress.org/reference/functions/register_block_type/
-	 */
-	//this doesnt work
-	//register_block_type( __DIR__ . '/blocks/slider/' , array( 'style' => 'swiperjs-css', 'swiperjs-css-style', ) );
-	register_block_type( __DIR__ . '/blocks/slider/' );
-	register_block_type( __DIR__ . '/blocks/slide/' );
 
 
 	/**
