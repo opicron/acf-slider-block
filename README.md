@@ -9,8 +9,8 @@ Forked from https://github.com/colorful-tones/acf-slider-block.
 - Thumbnails
 - Various improvements
 
-<img src="slider-container_test.PNG" alt="80x25" width="300"/>
-<img src="slider-full_width_test.PNG" alt="80x25" width="600"/>
+<img src="slider-container_test.PNG" alt="80x25" width="250"/>
+<img src="slider-full_width_test.PNG" alt="80x25" width="800"/>
 
 
 ## Installation
