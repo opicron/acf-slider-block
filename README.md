@@ -9,6 +9,10 @@ Forked from https://github.com/colorful-tones/acf-slider-block.
 - Thumbnails
 - Various improvements
 
+<img src="slider-container_test.PNG" alt="80x25" width="300"/>
+<img src="slider-full_width_test.PNG" alt="80x25" width="600"/>
+
+
 ## Installation
 
 __Required__ You must have [ACF PRO](https://https://www.advancedcustomfields.com/pro/) installed and activated in order to use the ACF Slider Block plugin.
