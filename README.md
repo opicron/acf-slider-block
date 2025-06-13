@@ -5,9 +5,8 @@ Demo: https://opicon.eu/uncategorized/test-acf-slider-block-with-swiperjs/
 
 ## Features
 
-- Container slider
-- Full width slider
-- Thumbnails
+- Slider works in containers and Full width
+- Thumbnails bar below slider
 - Various improvements
 
 <img src="slider-container_test.PNG" alt="80x25" width="250"/>
@@ -39,6 +38,10 @@ __Required__ You must have [ACF PRO](https://https://www.advancedcustomfields.co
   - Title
 - ACF improvements
 - Add/Improve Gutenberg editor css
+- Add Thumbnail bar
+  - Clickable events
+- Gallery per slider
+  - Both for Slider and Thumbnail click event
 
 ### 0.1.2 – 2023-11-15
 
