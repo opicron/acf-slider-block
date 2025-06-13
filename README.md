@@ -40,8 +40,8 @@ __Required__ You must have [ACF PRO](https://https://www.advancedcustomfields.co
 - Add/Improve Gutenberg editor css
 - Add Thumbnail bar
   - Clickable events
-- Gallery per slider
-  - Both for Slider and Thumbnail click event
+- Separate Slider in unique Gallery views
+  - Slide image click event
 
 ### 0.1.2 – 2023-11-15
 
